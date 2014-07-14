@@ -11,6 +11,5 @@ public class HelloFileTypeFactory extends FileTypeFactory {
     @Override
     public void createFileTypes(@NotNull FileTypeConsumer consumer) {
         consumer.consume(HelloFileType.INSTANCE, HelloFileType.DEFAULT_EXTENSION);
-        throw new RuntimeException("Loaded .hello");
     }
 }
