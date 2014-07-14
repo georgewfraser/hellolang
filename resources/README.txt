@@ -1,0 +1,1 @@
+This contains icons. For some reason it is marked as a source root, not a resources root.
