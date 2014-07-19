@@ -25,7 +25,8 @@
   <depends>com.intellij.modules.lang</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-    <fileTypeFactory implementation="hellolang.HelloFileTypeFactory" />
+      <fileTypeFactory implementation="hellolang.HelloFileTypeFactory" />
+      <lang.syntaxHighlighterFactory key="hello" implementationClass="hellolang.HelloHighlighterFactory"/>
   </extensions>
 
   <application-components>
