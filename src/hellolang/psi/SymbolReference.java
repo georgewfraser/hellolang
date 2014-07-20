@@ -1,10 +1,11 @@
-package hellolang.parser;
+package hellolang.psi;
 
+import com.intellij.lang.ASTNode;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReferenceBase;
-import hellolang.psi.SymbolDefinitionExpression;
-import hellolang.psi.SymbolReferenceExpression;
+import com.intellij.psi.impl.source.tree.LeafPsiElement;
+import hellolang.lexer.HelloTokenType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,6 +21,16 @@ public class SymbolReference extends PsiReferenceBase<SymbolReferenceExpression>
         // confusingly, the second argument is the text range WITHIN the reference expression
         super(reference, new TextRange(0, reference.getTextLength()));
         this.target = target;
+    }
+
+    @Override
+    public PsiElement handleElementRename(String newName) {
+        ASTNode node = target.getNode();
+        ASTNode oldSymbol = node.findChildByType(HelloTokenType.SYMBOL);
+        ASTNode newSymbol = new LeafPsiElement(HelloTokenType.SYMBOL, newName);
+        target.getNode().replaceChild(oldSymbol, newSymbol);
+
+        return target;
     }
 
     @Nullable

@@ -1,4 +1,31 @@
-The simplest possible IntelliJ custom language plugin.
+The simplest possible [IntelliJ custom language plugin](http://confluence.jetbrains.com/display/IDEADEV/Developing+Custom+Language+Plugins+for+IntelliJ+IDEA).
+Implements the Hello language, whose purpose is to exercise the features of the IntelliJ API in the simplest possible
+context.
+
+# Hello language
+The Hello language consists of:
+
+## Strings
+`"Hello world!"`
+
+## Symbols
+`x`
+
+## Let expressions
+`let x = "Hello world!" in x`
+
+# Plugin features
+
+* Syntax highlighting
+* Annotations
+* Symbol references
+* Test fixtures
+
+# TODO plugin features
+
+* Cross-file references
+* Run configurations
+* Compilation
 
 # Building
 
@@ -16,12 +43,8 @@ Intellij project files
 ## META-INF/
 Contains plugin.xml, the plugin configuration file.
 
-For some reason this directory gets included in hello.jar, even though it's neither a source root nor a resources root.
-
 ## resources/
 Icons.
-
-This directory is marked as a source root even though it's really a resources folder, though I'm not sure that's important.
 
 ## src/
 Java sources.

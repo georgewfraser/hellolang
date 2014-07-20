@@ -1,7 +1,7 @@
 package hellolang.psi;
 
 import com.intellij.lang.ASTNode;
-import org.jetbrains.annotations.Nullable;
+import hellolang.parser.HelloExpressionType;
 
 /**
  * Every expression of the form {@code let $name = $value in $body} is interpreted as
@@ -9,13 +9,13 @@ import org.jetbrains.annotations.Nullable;
  *
  * This wrapper makes it simple to implement {@code Finder.parentLet}
  */
-public class ScopeExpression extends HelloExpression {
-    @Nullable
-    public HelloExpression body() {
-        return super.findChildByClass(HelloExpression.class);
+public class ScopeExpression extends WrapperBase {
+    public ScopeExpression(ASTNode body) {
+        super(body);
     }
 
-    public ScopeExpression(ASTNode child) {
-        super(child);
+    @Override
+    public HelloExpressionType.Type type() {
+        return HelloExpressionType.Type.SCOPE;
     }
 }

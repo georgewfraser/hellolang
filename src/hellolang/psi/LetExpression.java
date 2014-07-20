@@ -2,6 +2,7 @@ package hellolang.psi;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.annotation.AnnotationHolder;
+import hellolang.parser.HelloExpressionType;
 import org.jetbrains.annotations.Nullable;
 
 public class LetExpression extends HelloExpression {
@@ -22,6 +23,11 @@ public class LetExpression extends HelloExpression {
 
     public LetExpression(ASTNode node) {
         super(node);
+    }
+
+    @Override
+    public HelloExpressionType.Type type() {
+        return HelloExpressionType.Type.LET;
     }
 
     @Override

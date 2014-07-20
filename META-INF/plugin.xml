@@ -28,6 +28,7 @@
       <fileTypeFactory implementation="hellolang.HelloFileTypeFactory" />
       <lang.syntaxHighlighterFactory key="hello" implementationClass="hellolang.lexer.HelloHighlighterFactory"/>
       <lang.parserDefinition language="hello" implementationClass="hellolang.parser.HelloParserDefinition"/>
+      <lang.formatter language="hello" implementationClass="hellolang.format.HelloFormattingModelBuilder"/>
       <annotator language="hello" implementationClass="hellolang.annotate.SyntaxErrors"/>
       <annotator language="hello" implementationClass="hellolang.annotate.SymbolValues"/>
   </extensions>
