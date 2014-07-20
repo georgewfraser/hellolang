@@ -1,4 +1,4 @@
-package hellolang;
+package hellolang.lexer;
 
 import com.intellij.openapi.fileTypes.SingleLazyInstanceSyntaxHighlighterFactory;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;

@@ -26,7 +26,10 @@
 
   <extensions defaultExtensionNs="com.intellij">
       <fileTypeFactory implementation="hellolang.HelloFileTypeFactory" />
-      <lang.syntaxHighlighterFactory key="hello" implementationClass="hellolang.HelloHighlighterFactory"/>
+      <lang.syntaxHighlighterFactory key="hello" implementationClass="hellolang.lexer.HelloHighlighterFactory"/>
+      <lang.parserDefinition language="hello" implementationClass="hellolang.parser.HelloParserDefinition"/>
+      <annotator language="hello" implementationClass="hellolang.annotate.SyntaxErrors"/>
+      <annotator language="hello" implementationClass="hellolang.annotate.SymbolValues"/>
   </extensions>
 
   <application-components>

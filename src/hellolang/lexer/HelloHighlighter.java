@@ -1,4 +1,4 @@
-package hellolang;
+package hellolang.lexer;
 
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
@@ -15,6 +15,7 @@ public class HelloHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey[] OPERATOR_ATTR = { DefaultLanguageHighlighterColors.OPERATION_SIGN };
     public static final TextAttributesKey[] STRING_ATTR = { DefaultLanguageHighlighterColors.STRING };
     public static final TextAttributesKey[] ERROR_ATTR = { CodeInsightColors.ERRORS_ATTRIBUTES };
+    public static final TextAttributesKey[] INLINE_COMMENT_ATTR = { DefaultLanguageHighlighterColors.BLOCK_COMMENT };
 
     @NotNull
     @Override
@@ -41,6 +42,8 @@ public class HelloHighlighter extends SyntaxHighlighterBase {
                     return STRING_ATTR;
                 case SPACE:
                     return EMPTY_ATTR;
+                case INLINE_COMMENT:
+                    return INLINE_COMMENT_ATTR;
                 case ERROR:
                     return ERROR_ATTR;
             }

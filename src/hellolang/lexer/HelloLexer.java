@@ -1,4 +1,4 @@
-package hellolang;
+package hellolang.lexer;
 
 import com.intellij.lexer.LexerBase;
 import com.intellij.psi.tree.IElementType;
@@ -17,12 +17,13 @@ public class HelloLexer extends LexerBase {
     private int bufferEnd, firstTokenStart, firstTokenEnd;
     private HelloTokenType firstToken;
 
-    public static final Pattern LET = Pattern.compile("let");
-    public static final Pattern IN = Pattern.compile("in");
+    public static final Pattern LET = Pattern.compile("let\\b");
+    public static final Pattern IN = Pattern.compile("in\\b");
     public static final Pattern SYMBOL = Pattern.compile("\\w+");
     public static final Pattern EQUAL = Pattern.compile("=");
     public static final Pattern STRING = Pattern.compile("\"[^\"]+\"");
     public static final Pattern SPACE = Pattern.compile("\\s+");
+    public static final Pattern INLINE_COMMENT = Pattern.compile("/\\*.*?(\\*/|$)");
 
     /**
      * Try to match pattern between firstTokenEnd and bufferEnd
@@ -49,7 +50,7 @@ public class HelloLexer extends LexerBase {
 
     @Override
     public void advance() {
-        // The order is important, since the SYMBOL regex encompasses let and in
+        // The order is important, since the SYMBOL_REFERENCE regex encompasses let and in
         if (firstTokenEnd == bufferEnd)
             firstToken = null;
         else if (tryMatch(LET))
@@ -64,17 +65,19 @@ public class HelloLexer extends LexerBase {
             firstToken = HelloTokenType.STRING;
         else if (tryMatch(SPACE))
             firstToken = HelloTokenType.SPACE;
+        else if (tryMatch(INLINE_COMMENT))
+            firstToken = HelloTokenType.INLINE_COMMENT;
         else {
             firstTokenStart = firstTokenEnd;
             firstTokenEnd = firstTokenEnd + 1;
             firstToken = HelloTokenType.ERROR;
         }
 
-        CharSequence start = buffer.subSequence(0, firstTokenStart);
-        CharSequence middle = buffer.subSequence(firstTokenStart, firstTokenEnd);
-        CharSequence end = buffer.subSequence(firstTokenEnd, buffer.length());
-
-        System.out.println("ADVANCE: \"" +  "" + start + "[" + middle + "]" + end + "\"");
+//        CharSequence start = buffer.subSequence(0, firstTokenStart);
+//        CharSequence middle = buffer.subSequence(firstTokenStart, firstTokenEnd);
+//        CharSequence end = buffer.subSequence(firstTokenEnd, buffer.length());
+//
+//        System.out.println("ADVANCE: \"" +  "" + start + "[" + middle + "]" + end + "\"");
     }
 
     @Override
@@ -88,7 +91,7 @@ public class HelloLexer extends LexerBase {
         CharSequence middle = buffer.subSequence(startOffset, endOffset);
         CharSequence end = buffer.subSequence(endOffset, buffer.length());
 
-        System.out.println("START: \"" + start + "[" + middle + "]" + end + "\"");
+//        System.out.println("START: \"" + start + "[" + middle + "]" + end + "\"");
 
         advance();
     }
