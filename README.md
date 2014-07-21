@@ -15,17 +15,18 @@ The Hello language consists of:
 `let x = "Hello world!" in x`
 
 # Plugin features
-
 * Syntax highlighting
 * Annotations
 * Symbol references
+* In-place renaming
+* Code formatting
 * Test fixtures
 
 # TODO plugin features
-
-* Cross-file references
-* Run configurations
-* Compilation
+* Reference Java symbols from Hello
+* Reference Hello symbols from Java (requires additional syntax, PsiReferenceContributor?)
+* Run configuration that invokes Hello interpreter
+* Compilation of Hello files using ASM
 
 # Building
 
